@@ -184,10 +184,15 @@ var WTF = (function() {
             item = regex.exec( idea ),
             copy = cloneCorpus();
 
+        console.log('copy', copy)
+
         while ( item && ++iter < 1000 ) {
 
             type = item[ 0 ];
             text = item[ 1 ];
+
+            console.log('text', text)
+            console.log('copytext', copy[text])
 
             part = randomItem( copy[ text ], true );
             idea = idea.replace( type, part );
@@ -223,6 +228,11 @@ var WTF = (function() {
     }
 
     function randomItem( list, remove ) {
+
+        if(list == undefined) {
+            console.log('no list given')
+            return ""
+        }
 
         var index = ~~( Math.random() * list.length );
         var item = list[ index ];
