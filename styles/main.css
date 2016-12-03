@@ -73,12 +73,18 @@ noscript {
 #output dd:before {
 	content: "The ";
 	opacity: 0;
-	transition: opacity 0.25s ease 0.25s;
+	transition: opacity 0.2s ease 0s;
 	margin-left: -2.1em;
 }
 
-#output dd:hover:before {
+#output dd:hover:before,
+#output.the dd:before {
 	opacity: 1;
+}
+
+#generate, #the {
+	line-height: 28px;
+	vertical-align: middle;
 }
 
 #generate {
@@ -90,6 +96,13 @@ noscript {
 #generate:hover {
 	text-decoration: underline;
 	color: black;
+}
+
+#the {
+	margin-left: 20px;
+	color: #333;
+	font-size: 20px;
+	text-decoration: none;
 }
 
 aside {
