@@ -178,6 +178,15 @@ var WTF = (function() {
         });
     }
 
+    function bindRerolls() {
+        $('.reroll').each(function (index) {
+            var type = $(this).data('type')
+            $(this).click(function () {
+                $(this).html(randomItem(corpus[type], false))
+            })
+        })
+    }
+
     /*
       ------------------------------------------------------------
 
@@ -216,7 +225,7 @@ var WTF = (function() {
 
     function generate() {
 
-        var type, text, part, iter = 0, // Safety mechanism
+        var type, text, part, iter = 0, span = '', // Safety mechanism
             idea = randomItem( templates ),
             item = regex.exec( idea ),
             copy = cloneCorpus();
@@ -227,7 +236,8 @@ var WTF = (function() {
             text = item[ 1 ];
 
             part = randomItem( copy[ text ], true );
-            idea = idea.replace( type, part );
+            span = '<span class="reroll" data-type="' + text + '">' + part + '</span>'
+            idea = idea.replace( type, span );
 
             regex.lastIndex = 0;
             item = regex.exec( idea );
@@ -247,6 +257,7 @@ var WTF = (function() {
 
         setTimeout( showOutput, 0 );
         hideOutput();
+        bindRerolls();
     }
 
     function hideOutput() {
