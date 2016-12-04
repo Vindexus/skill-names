@@ -63,6 +63,12 @@ noscript {
 	margin: 60px 0;
 }
 
+#output *::selection,
+#outptt *::-moz-selection {
+	background: #fff;
+	color: #000;
+}
+
 #output dd {
 	font-size: 48px;
 	display: block;
