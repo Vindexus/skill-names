@@ -67,7 +67,7 @@ noscript {
 	font-size: 48px;
 	display: block;
 	margin: 60px 0;
-	min-height: 4em;
+	min-height: 2em;
 }
 
 #output dd:before {
@@ -77,7 +77,6 @@ noscript {
 	margin-left: -2.1em;
 }
 
-#output dd:hover:before,
 #output.the dd:before {
 	opacity: 1;
 }

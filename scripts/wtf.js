@@ -181,7 +181,8 @@ var WTF = (function() {
     function bindRerolls() {
         $('.reroll').each(function (index) {
             var type = $(this).data('type')
-            $(this).click(function () {
+            $(this).click(function (e) {
+                e.preventDefault()
                 $(this).html(randomItem(corpus[type], false))
             })
         })
