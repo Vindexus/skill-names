@@ -68,6 +68,36 @@ noscript {
 	margin: 60px 0;
 }
 
+
+#output .reroll:hover {
+	color: #333;
+	cursor: pointer;
+}
+
+#output .reroll {
+	position: relative;
+}
+
+#output .reroll:before {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	color: #000;
+	content: "reroll";
+	opacity: 0;
+	transition: opacity 0.25s ease;
+	height: 14px;
+	line-height: 14px;
+	top: 0px;
+	left: 0px;
+	background: #fff;
+}
+
+#output .reroll:hover:before {
+	opacity: 0.7;
+}
+
 #generate {
 	text-decoration: none;
 	font-size: 20px;
