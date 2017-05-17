@@ -181,7 +181,8 @@ var WTF = (function() {
     function bindRerolls() {
         $('.reroll').each(function (index) {
             var type = $(this).data('type')
-            $(this).click(function () {
+            $(this).click(function (e) {
+                e.preventDefault()
                 $(this).html(randomItem(corpus[type], false))
             })
         })
@@ -209,7 +210,7 @@ var WTF = (function() {
             }
             return a.length > b.length ? -1 : 1
         })
-        
+
         var content = '@(type)'.replace( 'type', types.join( '|' ) );
 
         regex = new RegExp( content, 'gi' );
@@ -271,6 +272,10 @@ var WTF = (function() {
     }
 
     function randomItem( list, remove ) {
+
+        if(list == undefined) {
+            return ""
+        }
 
         var index = ~~( Math.random() * list.length );
         var item = list[ index ];
