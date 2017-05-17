@@ -69,10 +69,14 @@ noscript {
 	color: #000;
 }
 
+#output dl {
+	margin-top: 60px;
+}
+
 #output dd {
-	font-size: 48px;
+	font-size: 24px;
 	display: block;
-	margin: 60px 0;
+	margin: 5px 0;
 	min-height: 2em;
 }
 

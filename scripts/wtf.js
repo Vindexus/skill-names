@@ -200,9 +200,9 @@ var WTF = (function() {
 
         var types = [];
 
-        for ( var type in corpus )
-
+        for ( var type in corpus ) {
             types.push( type );
+        }
 
         types = types.sort(function (a, b) {
             if (a.length == b.length) {
@@ -224,13 +224,13 @@ var WTF = (function() {
       ------------------------------------------------------------
     */
 
-    function generate() {
-
+    function getRandomIdea () {
         var type, text, part, iter = 0, span = '', // Safety mechanism
             idea = randomItem( templates ),
             item = regex.exec( idea ),
             copy = cloneCorpus();
 
+        var plaintext = idea;
         while ( item && ++iter < 1000 ) {
 
             type = item[ 0 ];
@@ -239,18 +239,29 @@ var WTF = (function() {
             part = randomItem( copy[ text ], true );
             span = '<span class="reroll" data-type="' + text + '">' + part + '</span>'
             idea = idea.replace( type, span );
+            plaintext = plaintext.replace( type, part );
 
             regex.lastIndex = 0;
             item = regex.exec( idea );
         }
+        return [idea, plaintext];
+    }
 
+    function generate() {
         // Update output
+        var ideas = [];
+
+        for(var i = 0; i < WTF.numItems; i++) {
+            ideas.push(getRandomIdea());
+        }
 
         dom.generate.text( randomItem( responses ) );
         dom.output.html(
             '<dl>' +
                 '<dt>' + randomItem( headings ) + '</dt>' +
-                '<dd>' + idea + '</dd>' +
+                ideas.map(function (idea) {
+                    return '<dd>' + idea[0] + '</dd>';
+                }).join("\n") +
             '</dl>'
         );
 
@@ -328,8 +339,8 @@ var WTF = (function() {
 
         */
 
-        init: function( data ) {
-
+        init: function( data, opts ) {
+            WTF.numItems = opts.numItems || 1;
             if ( !data ) throw data + ' is not a valid corpus';
 
             if ( typeof data === 'string' ) {
@@ -380,7 +391,7 @@ var WTF = (function() {
         },
 
         // Expose certain methods
-
+        getRandomIdea: getRandomIdea,
         generate: generate
     };
 

@@ -36,5 +36,12 @@ $(function() {
 
     // Populate using a Google spreadsheet ID (you must publish it first!)
     // @see https://support.google.com/drive/answer/37579?hl=en
-    WTF.init( '1Raq9fRIV2x5vQc4uDZpbWSmZbqmFg9wDi4hin2mO_lo' );
+    WTF.init( '1Raq9fRIV2x5vQc4uDZpbWSmZbqmFg9wDi4hin2mO_lo', {numItems: 10} );
+    setTimeout(function () {
+        var names = [];
+        for(var i = 0; i <= 1000; i++) {
+            names.push(WTF.getRandomIdea()[1]);
+        }
+        console.log(names.join(','));
+    }, 1000);
 });
